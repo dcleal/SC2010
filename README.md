@@ -1,1 +1,2 @@
 # SC2010
+This repo contains the materials for a workshop entitled "Refactoring golf" that Ivan Moore, Mike Hill and I ran at Software Craftsmanship 2010. You can get a flavour of what the workshop was about at https://sc2010subs.wordpress.com/2010/08/13/refactoring-golf-dave-cleal-ivan-moore/, where there is even a link to a video of me playing refactoring golf. Feel free to try it out and tell me what you score.
