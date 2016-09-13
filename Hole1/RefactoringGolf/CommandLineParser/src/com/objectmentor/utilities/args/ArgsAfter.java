@@ -4,12 +4,12 @@ import java.util.*;
 
 import static com.objectmentor.utilities.args.ArgsException.ErrorCode.*;
 
-public class ArgsBefore {
+public class ArgsAfter {
     private Map<Character, ArgumentMarshaler> marshalers;
     private Set<Character> argsFound;
     private ListIterator<String> currentArgument;
 
-    public ArgsBefore(String schema, String[] args) throws ArgsException {
+    public ArgsAfter(String schema, String[] args) throws ArgsException {
         marshalers = new HashMap<Character, ArgumentMarshaler>();
         argsFound = new HashSet<Character>();
 
@@ -27,18 +27,21 @@ public class ArgsBefore {
         char elementId = element.charAt(0);
         String elementTail = element.substring(1);
         validateSchemaElementId(elementId);
-        if (elementTail.length() == 0)
-            marshalers.put(elementId, new BooleanArgumentMarshaler());
-        else if (elementTail.equals("*"))
-            marshalers.put(elementId, new StringArgumentMarshaler());
-        else if (elementTail.equals("#"))
-            marshalers.put(elementId, new IntegerArgumentMarshaler());
-        else if (elementTail.equals("##"))
-            marshalers.put(elementId, new DoubleArgumentMarshaler());
-        else if (elementTail.equals("[*]"))
-            marshalers.put(elementId, new StringArrayArgumentMarshaler());
-        else
+        ArgumentMarshaler marshaler;
+        if (elementTail.length() == 0) {
+            marshaler = new BooleanArgumentMarshaler();
+        } else if (elementTail.equals("*")) {
+            marshaler = new StringArgumentMarshaler();
+        } else if (elementTail.equals("#")) {
+            marshaler = new IntegerArgumentMarshaler();
+        } else if (elementTail.equals("##")) {
+            marshaler = new DoubleArgumentMarshaler();
+        } else if (elementTail.equals("[*]")) {
+            marshaler = new StringArrayArgumentMarshaler();
+        } else {
             throw new ArgsException(INVALID_ARGUMENT_FORMAT, elementId, elementTail);
+        }
+        marshalers.put(elementId, marshaler);
     }
 
     private void validateSchemaElementId(char elementId) throws ArgsException {
