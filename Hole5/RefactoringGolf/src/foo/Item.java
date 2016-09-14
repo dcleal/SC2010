@@ -121,7 +121,7 @@ public class Item implements Comparable<Item> {
 
         output.append("    <");
         output.append(RSS.NODE_ITEM);
-        output.append(">\n");
+        output.append(">");
 
         //TITLE
         output.append("        <");

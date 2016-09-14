@@ -128,7 +128,6 @@ public class ItemAfter implements Comparable<ItemAfter> {
 
         output.append("    ");
         startTag(output, RSS.NODE_ITEM);
-        output.append("\n");
 
         //TITLE
         output.append("        ");
